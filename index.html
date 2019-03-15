@@ -1,6 +1,40 @@
-<html>
-	<title></title>
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" ng-app="noteApp" ng-controller="noteCtrl">
+	<title>Cyclopes World</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS IMPORT-->
+	<link rel="stylesheet" type="text/css" href="plugins/bootstrap/css/bootstrap.min.css"/>
+	<!-- CSS IMPORT-->
+	
 	<body>
-		哈囉
+		<div id="header" class="navbar" ng-bind-template="HEADER 大項"></div>
+		<div id="header" class="navbar">
+			<h3 class="page-title" ng-bind-template="TITLE 標題"></h3>
+		</div>
+		<div id="content" class="navbar">
+			<span ng-bind-template="CONTENT 內容"></span>
+		</div>
 	</body>
+	
+	<!-- JS IMPORT -->
+	<script type="text/javascript" src="plugins/jquery-3.3.1.min.js"></script>
+	<!--<script type="text/javascript" src="plugins/jquery-migrate-1.4.1.min.js"></script>-->
+	<script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="plugins/angular/angular.js"></script>
+	<script type="text/javascript" src="plugins/angular/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="plugins/angular/angular-animate.min.js"></script>
+	<script type="text/javascript" src="plugins/angular/angular-cookies.min.js"></script>
+	<!--<script type="text/javascript" src="plugins/angular/angular-filter.min.js"></script>-->
+	<!-- JS IMPORT -->
+	<script>                                                                                                                                                                                                                                         
+		var app = angular.module('noteApp', ['ngAnimate','ngCookies','ngSanitize','ngSanitize']);                                                                                                                                                                                                                        
+		app.controller('noteCtrl',function($scope,$http,$cookies,$window) {
+			angular.element(document).ready(function () {
+			
+			});
+		});
+</script>
 </html>
