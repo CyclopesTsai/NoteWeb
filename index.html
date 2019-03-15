@@ -7,6 +7,7 @@
 
 	<!-- CSS IMPORT-->
 	<link rel="stylesheet" type="text/css" href="plugins/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/theme.css"/>
 	<!-- CSS IMPORT-->
 	
 	<body>
@@ -15,7 +16,16 @@
 			<h3 class="page-title" ng-bind-template="TITLE 標題"></h3>
 		</div>
 		<div id="content" class="navbar">
-			<span ng-bind-template="CONTENT 內容"></span>
+			<table>
+				<tr>
+					<th>物品ID</th>
+					<th>物品名稱</th>
+				</tr>
+				<tr ng-repeat="x in itemList">
+					<td ng-bind="x.ItemID"></td>
+					<td ng-bind="x.ItemName"></td>
+				</tr>
+			</table>
 		</div>
 	</body>
 	
@@ -27,14 +37,29 @@
 	<script type="text/javascript" src="plugins/angular/angular-sanitize.min.js"></script>
 	<script type="text/javascript" src="plugins/angular/angular-animate.min.js"></script>
 	<script type="text/javascript" src="plugins/angular/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="plugins/ui-bootstrap-tpls-2.5.0.min.js"></script>
+	<script type="text/javascript" src="plugins/dialog/dialogs-main.js"></script>
 	<!--<script type="text/javascript" src="plugins/angular/angular-filter.min.js"></script>-->
+	<script type="text/javascript" src="plugins/waitingDialog.js"></script>
 	<!-- JS IMPORT -->
 	<script>                                                                                                                                                                                                                                         
-		var app = angular.module('noteApp', ['ngAnimate','ngCookies','ngSanitize','ngSanitize']);                                                                                                                                                                                                                        
-		app.controller('noteCtrl',function($scope,$http,$cookies,$window) {
+		var app = angular.module('noteApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngSanitize', 'ui.bootstrap', 'dialogs.main']);                                                                                                                                                                                                                        
+		app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 			angular.element(document).ready(function () {
-			
+				$scope.getItemList();
 			});
+			
+			$scope.getItemList = function(){
+				waitingDialog.show();
+				$http({
+					method: 'GET',
+					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec'
+				}).then(function (response){
+					debugger;
+					$scope.itemList = response.data;
+					waitingDialog.hide();
+				});
+			}
 		});
 </script>
 </html>
