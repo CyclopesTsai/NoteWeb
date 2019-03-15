@@ -1,6 +1,24 @@
 
-body {
-	color: #222222;
-	background-color: #F5F5DC;
+html {
+	overflow-x: hidden;
 }
 
+html, body, .wrapper {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 微軟正黑體;
+	padding: 0px !important;
+	margin: 0px !important;
+	font-size: 16px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+input {
+	width: auto !important;
+}
