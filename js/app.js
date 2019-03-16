@@ -51,7 +51,7 @@ app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 		}
 		
 		if(errMsg){
-			dialogs.notify(errMsg);
+			//dialogs.notify(errMsg);
 			return true;
 		}
 	}
