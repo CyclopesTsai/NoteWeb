@@ -1,0 +1,25 @@
+/* Custom dialog/modal headers */
+.dialog-header-error {
+	background-color: #eeeeee;
+}
+
+.dialog-header-wait {
+	background-color: #428bca;
+}
+
+.dialog-header-notify {
+	background-color: #eeeeee;
+}
+
+.dialog-header-confirm {
+	background-color: #eeeeee;
+}
+
+.dialog-header-error span, .dialog-header-error h4 {
+	color: #a94442;
+}
+
+.dialog-header-wait span, .dialog-header-wait h4, .dialog-header-confirm span,
+	.dialog-header-confirm h4 {
+	color: #31708f;
+}

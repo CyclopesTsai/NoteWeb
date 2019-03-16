@@ -22,3 +22,7 @@ ul {
 input {
 	width: auto !important;
 }
+
+span {
+	margin-top: 5px;
+}
