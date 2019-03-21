@@ -39,7 +39,7 @@ app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 			//debugger;
 			$scope.auctionList = response.data;
 			for(var i in $scope.auctionList){
-				$scope.auctionList[i].buyOne = $scope.auctionList[i].buyout / $scope.auctionList[i].quantity;
+				$scope.auctionList[i].buyOne = Math.floor( $scope.auctionList[i].buyout / $scope.auctionList[i].quantity );
 				$scope.auctionList[i] = transBid($scope.auctionList[i]);
 			}
 			
