@@ -38,6 +38,10 @@ app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 		}).then(function (response){
 			//debugger;
 			$scope.auctionList = response.data;
+			for(var i in $scope.auctionList){
+				$scope.auctionList[i].buyOne = $scope.auctionList[i].buyout / $scope.auctionList[i].quantity;
+				$scope.auctionList[i] = transBid($scope.auctionList[i]);
+			}
 			
 			waitingDialog.hide();
 		});
@@ -54,5 +58,29 @@ app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 			//dialogs.notify(errMsg);
 			return true;
 		}
+	}
+	
+	function transBid(auctionData){
+		if(auctionData){
+			if(auctionData.bid){
+				auctionData.bid = auctionData.bid*1;
+				auctionData.bidG = Math.floor(auctionData.bid/10000);
+				auctionData.bidS =  Math.floor( (auctionData.bid - (auctionData.bidG*10000))/100 );
+				auctionData.bidC = auctionData.bid - (auctionData.bidG*10000) - (auctionData.bidS*100);
+			}
+			if(auctionData.buyout){
+				auctionData.buyout = auctionData.buyout*1;
+				auctionData.buyoutG = Math.floor(auctionData.buyout/10000);
+				auctionData.buyoutS =  Math.floor( (auctionData.buyout - (auctionData.buyoutG*10000))/100 );
+				auctionData.buyoutC = auctionData.buyout - (auctionData.buyoutG*10000) - (auctionData.buyoutS*100);
+			}
+			if(auctionData.buyOne){
+				auctionData.buyOne = auctionData.buyOne*1;
+				auctionData.buyOneG = Math.floor(auctionData.buyOne/10000);
+				auctionData.buyOneS =  Math.floor( (auctionData.buyOne - (auctionData.buyOneG*10000))/100 );
+				auctionData.buyOneC = auctionData.buyOne - (auctionData.buyOneG*10000) - (auctionData.buyOneS*100);
+			}
+		}
+		return auctionData;
 	}
 });

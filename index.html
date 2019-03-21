@@ -34,7 +34,7 @@
 									<thead>
 										<tr>
 											<th class="text-center">玩家</th>
-											<th class="text-center">最低價</th>
+											<th class="text-center">起標價</th>
 											<th class="text-center">直購價</th>
 											<th class="text-center">單位價</th>
 											<th class="text-center">數量</th>
@@ -47,9 +47,9 @@
 											<!--<td ng-bind="x.item"></td>-->
 											<td ng-bind="x.owner"></td>
 											<!--<td ng-bind="x.ownerRealm"></td>-->
-											<td ng-bind="x.bid"></td>
-											<td ng-bind="x.buyout"></td>
-											<td ng-bind=""></td>
+											<td ng-bind-template="{{x.bidG}}金{{x.bidS}}銀{{x.bidC}}銅"></td>
+											<td ng-bind-template="{{x.buyoutG}}金{{x.buyoutS}}銀{{x.buyoutC}}銅"></td>
+											<td ng-bind-template="{{x.buyOneG}}金{{x.buyOneS}}銀{{x.buyOneC}}銅"></td>
 											<td ng-bind="x.quantity"></td>
 											<td ng-bind="x.timeLeft"></td>
 											<!--<td ng-bind="x.rand"></td>-->
