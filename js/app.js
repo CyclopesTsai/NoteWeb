@@ -52,6 +52,9 @@ app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 	function commitCheck(){
 		var errMsg='';
 		
+		//TODO 問題待查
+		$scope.itemName = $('#itemName').val();
+		
 		if(!$scope.itemName){
 			errMsg += '請輸入物品名稱';
 		}
