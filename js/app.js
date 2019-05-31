@@ -17,7 +17,7 @@ app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 		}).then(function (response){
 			//debugger;
 			$scope.itemList = response.data;
-			$("#search").autocomplete({
+			$("#itemName").autocomplete({
 				source:[$scope.itemList]
 			});
 			
