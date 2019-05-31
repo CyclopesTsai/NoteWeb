@@ -1,6 +1,8 @@
 var app = angular.module('noteApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'dialogs.main']);                                                                                                                                                                                                                        
 app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 
+	$scope.itemName = '';
+
 	angular.element(document).ready(function () {
 		$scope.getItemList();
 	});
