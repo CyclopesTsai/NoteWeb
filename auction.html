@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" ng-app="noteApp" ng-controller="noteCtrl">
+	<title>Cyclopes's World</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS IMPORT-->
+	<link rel="stylesheet" type="text/css" href="css/theme.css"/>
+	<link rel="stylesheet" type="text/css" href="plugins/dialog/dialogs.css"/>
+	<link rel="stylesheet" type="text/css" href="plugins/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="plugins/autoComplete/css/jquery.autocomplete.css"/>
+	<!-- CSS IMPORT-->
+	
+	<body class="page-header-fixed">
+		<div class="navbar">
+			<h4 ng-bind-template="WOW Auction"></h4>
+		</div>
+			
+		<div class="panel panel-warning">
+			<div class="panel-body">
+				<form name="form" class="form-horizontal" role="form">
+					<div class="form-body">
+						<div class="form-group col-md-10 col-sm-10 ">
+							<div class="col-md-8 col-sm-8 row">
+								<span>物品名稱：</span>&nbsp;
+								<input class="form-control" id="itemName" name="itemName" ng-model="itemName" autofocus ng-required="true"/>&nbsp;
+								<button class="btn btn-primary" ng-click="qryDataList();">搜尋</button>
+							</div>
+						</div>
+						<div class="form-group col-md-10 col-sm-10">
+							<div class="table-responsive">
+								<table class="table table-advance table-hover text-center">
+									<thead>
+										<tr>
+											<th class="text-center">玩家</th>
+											<th class="text-center">起標價</th>
+											<th class="text-center">直購價</th>
+											<th class="text-center">單位價</th>
+											<th class="text-center">數量</th>
+											<!--th class="text-center">時間</th-->
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="x in auctionList">
+											<!--<td ng-bind="x.auc"></td>-->
+											<!--<td ng-bind="x.item"></td>-->
+											<td ng-bind="x.owner"></td>
+											<!--<td ng-bind="x.ownerRealm"></td>-->
+											<td ng-bind-template="{{x.bidG}}金{{x.bidS}}銀{{x.bidC}}銅"></td>
+											<td ng-bind-template="{{x.buyoutG}}金{{x.buyoutS}}銀{{x.buyoutC}}銅"></td>
+											<td ng-bind-template="{{x.buyOneG}}金{{x.buyOneS}}銀{{x.buyOneC}}銅"></td>
+											<td ng-bind="x.quantity"></td>
+											<!--td ng-bind="x.timeLeft"></td-->
+											<!--<td ng-bind="x.rand"></td>-->
+											<!--<td ng-bind="x.seed"></td>-->
+											<!--<td ng-bind="x.context"></td>-->
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+	
+	<!-- JS IMPORT -->
+	<script type="text/javascript" src="plugins/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="plugins/angular/angular.js"></script>
+	<script type="text/javascript" src="plugins/angular/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="plugins/angular/angular-animate.min.js"></script>
+	<script type="text/javascript" src="plugins/angular/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="plugins/ui-bootstrap-tpls-2.5.0.min.js"></script>
+	<script type="text/javascript" src="plugins/autoComplete/js/jquery.autocomplete.js"></script>
+	<script type="text/javascript" src="plugins/dialog/dialogs-main.js"></script>
+	<script type="text/javascript" src="plugins/waitingDialog.js"></script>
+	<!-- JS IMPORT -->
+	
+	<script>document.write('<script type="text/javascript"src="js/app.js?r=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>
+</html>
