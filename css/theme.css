@@ -9,7 +9,7 @@ html, body, .wrapper {
 }
 
 body {
-	font-family: 微軟正黑體;
+	font-family: 微軟正黑體 !important;
 	padding: 0px !important;
 	margin: 0px !important;
 	font-size: 16px;
@@ -25,4 +25,9 @@ input {
 
 span {
 	margin-top: 5px;
+}
+
+input[type="checkbox"]{
+  width: 20px !important; 
+  height: 20px !important;
 }

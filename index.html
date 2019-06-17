@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<html lang="zh-Hant-TW" ng-app="noteApp" ng-controller="noteCtrl">
 	<title>Cyclopes's World</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,30 +13,19 @@
 	<link rel="stylesheet" type="text/css" href="plugins/autoComplete/css/jquery.autocomplete.css"/>
 	<!-- CSS IMPORT-->
 	
-	<script>
-		function changeRightFrame(frameName) {
-			$("#rightFrame").attr("src",frameName);
-		}
-	</script>
-	
 	<body class="page-header-fixed">
 		<nav class="navbar navbar-inverse sidebar" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a href="#" onclick="changeRightFrame('')">
+					<a href="#" ng-click="changeRightFrame()">
 						<span class="navbar-brand">Cyclopes's World</span>
 					</a>
 				</div>
 				<div class="navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li>
-							<a href="#" onclick="changeRightFrame('auction.html')">
-								<span>Auction</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span>Work</span>
+						<li ng-repeat="x in menuList">
+							<a href="#" ng-click="changeRightFrame(x)">
+								<span ng-bind="x.name"></span>
 							</a>
 						</li>
 					</ul>
@@ -60,4 +49,6 @@
 	<script type="text/javascript" src="plugins/dialog/dialogs-main.js"></script>
 	<script type="text/javascript" src="plugins/waitingDialog.js"></script>
 	<!-- JS IMPORT -->
+	
+	<script>document.write('<script type="text/javascript"src="js/app.js?r=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>
 </html>

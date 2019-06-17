@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" ng-app="workApp" ng-controller="workCtrl">
+	<title>Cyclopes's World</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS IMPORT-->
+	<link rel="stylesheet" type="text/css" href="../../css/theme.css"/>
+	<link rel="stylesheet" type="text/css" href="../../plugins/dialog/dialogs.css"/>
+	<link rel="stylesheet" type="text/css" href="../../plugins/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../plugins/autoComplete/css/jquery.autocomplete.css"/>
+	<!-- CSS IMPORT-->
+	
+	<body class="page-header-fixed">
+		<div class="navbar">
+			<h4 ng-bind-template="工作清單"></h4>
+		</div>
+			
+		<div class="panel panel-warning">
+			<div class="panel-body">
+				<form name="form" class="form-horizontal" role="form">
+					<div class="form-body">
+						<div class="form-group col-md-10 col-sm-10">
+							<div class="col-md-8 col-sm-8 row">
+								<span>待辦</span>
+							</div>
+						</div>
+						<div class="form-group col-md-10 col-sm-10">
+							<div class="table-responsive">
+								<table class="table table-advance table-hover text-left col-md-12 col-sm-12">
+									<thead>
+										<tr>
+											<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;項目</th>
+											<th>內容</th>
+											<th>時間</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="x in workList | filter:{status:'N'}">
+											<td>
+												<input type="checkbox" ng-click="changeStatus(x)"/>&nbsp;&nbsp;&nbsp;&nbsp;
+												<span ng-bind="x.subject"></span>
+											</td>
+											<td ng-bind="x.content"></td>
+											<td ng-bind="x.cre_date | date:'yyyy-MM-dd'"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="form-group col-md-10 col-sm-10">
+							<div class="col-md-8 col-sm-8 row">
+								<span>完成</span>
+							</div>
+						</div>
+						<div class="form-group col-md-10 col-sm-10">
+							<div class="table-responsive">
+								<table class="table table-advance table-hover text-left">
+									<thead>
+										<tr>
+											<th>項目</th>
+											<th>內容</th>
+											<th>時間</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="x in workList | filter:{status:'Y'}">
+											<td ng-bind="x.subject"></td>
+											<td ng-bind="x.content"></td>
+											<td ng-bind="x.cre_date | date:'yyyy-MM-dd'"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+	
+	<!-- JS IMPORT -->
+	<script type="text/javascript" src="../../plugins/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../plugins/angular/angular.js"></script>
+	<script type="text/javascript" src="../../plugins/angular/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="../../plugins/angular/angular-animate.min.js"></script>
+	<script type="text/javascript" src="../../plugins/angular/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="../../plugins/ui-bootstrap-tpls-2.5.0.min.js"></script>
+	<script type="text/javascript" src="../../plugins/autoComplete/js/jquery.autocomplete.js"></script>
+	<script type="text/javascript" src="../../plugins/dialog/dialogs-main.js"></script>
+	<script type="text/javascript" src="../../plugins/waitingDialog.js"></script>
+	<!-- JS IMPORT -->
+	
+	<script>document.write('<script type="text/javascript"src="work.js?r=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>
+</html>
