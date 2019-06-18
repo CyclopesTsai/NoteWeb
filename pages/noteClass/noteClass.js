@@ -1,17 +1,16 @@
-var app = angular.module('workApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'dialogs.main']);                                                                                                                                                                                                                        
-app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
+var app = angular.module('noteClassApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ui.bootstrap', 'dialogs.main']);                                                                                                                                                                                                                        
+app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialogs) {
 
 	$scope.tmpData = {
-		subject: '',
-		content: ''
+		name: ''
 	};
 
 	angular.element(document).ready(function () {
-		$scope.getWorkList();
+		$scope.getNoteClassList();
 	});
 	
-	$scope.getWorkList = function() {
-		var param = 'func=workJson';
+	$scope.getNoteClassList = function() {
+		var param = 'func=noteClassJson';
 		
 		waitingDialog.show();
 		$http({
@@ -19,16 +18,16 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 			url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
 		}).then(function (response){
 			//debugger;
-			$scope.workList = response.data;
+			$scope.noteClassList = response.data;
 			
 			waitingDialog.hide();
 		});
 	}
 	
-	$scope.changeStatus = function(work) {
-		if(work) {
-			var param = 'func=workUpd';
-			param += ('&data=' + encodeURIComponent(angular.toJson(work)));
+	$scope.changeStatus = function(noteClass) {
+		if(noteClass) {
+			var param = 'func=noteClassUpd';
+			param += ('&data=' + encodeURIComponent(angular.toJson(noteClass)));
 			
 			waitingDialog.show();
 			$http({
@@ -37,9 +36,15 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 				data : param,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).then(function (response){
-				if( response.data == 'true' ){
-					work.status = 'Y';
-				}
+				
+				param = 'func=noteClassJson';
+				$http({
+					method: 'GET',
+					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
+				}).then(function (response){
+					$scope.noteClassList = response.data;
+				});
+				
 				waitingDialog.hide();
 			});
 		}
@@ -47,11 +52,11 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 	
 	$scope.insert = function() {
 		if($scope.tmpData) {
-			if(!$scope.tmpData.subject || !$scope.tmpData.content){
+			if(!$scope.tmpData.name){
 				return;
 			}
 			
-			var param = 'func=workAdd';
+			var param = 'func=noteClassAdd';
 			param += ('&data=' + encodeURIComponent(angular.toJson($scope.tmpData)));
 			
 			waitingDialog.show();
@@ -63,17 +68,16 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 			}).then(function (response){
 				if( response.data == 'true' ){
 					$scope.tmpData = {
-						subject: '',
-						content: ''
+						name: ''
 					};
 				}
 				
-				param = 'func=workJson';
+				param = 'func=noteClassJson';
 				$http({
 					method: 'GET',
 					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
 				}).then(function (response){
-					$scope.workList = response.data;
+					$scope.noteClassList = response.data;
 				});
 				
 				waitingDialog.hide();

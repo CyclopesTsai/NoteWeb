@@ -156,6 +156,17 @@ section{
 }
 
 .main{
+	/*width: 87.6%;*/
+	height: 99%;
+}
+
+.main div{
 	width: 100%;
 	height: 100%;
+}
+
+.hello{
+	position:absolute;
+	top:30%;
+	left:30%;
 }

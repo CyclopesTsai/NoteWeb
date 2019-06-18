@@ -51,6 +51,7 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 				return;
 			}
 			
+			debugger;
 			var param = 'func=workAdd';
 			param += ('&data=' + encodeURIComponent(angular.toJson($scope.tmpData)));
 			

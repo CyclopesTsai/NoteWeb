@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW" ng-app="workApp" ng-controller="workCtrl">
+<html lang="zh-Hant-TW" ng-app="noteClassApp" ng-controller="noteClassCtrl">
 	<title>Cyclopes's World</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,7 @@
 	
 	<body class="page-header-fixed">
 		<div class="navbar">
-			<h4 ng-bind-template="工作清單"></h4>
+			<h4 ng-bind-template="記事本分類"></h4>
 		</div>
 			
 		<div class="panel panel-warning">
@@ -22,64 +22,31 @@
 				<form name="form" class="form-horizontal" role="form">
 					<div class="form-body">
 						<div class="form-group col-12">
-							<div class="col-md-8 col-sm-8 row">
-								<span>待辦</span>
-							</div>
-						</div>
-						<div class="form-group col-12">
 							<div class="table-responsive">
 								<table class="table table-advance table-hover text-left">
 									<thead>
 										<tr>
-											<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;項目</th>
-											<th>內容概要</th>
-											<th>時間</th>
+											<th>項目編號</th>
+											<th>項目名稱</th>
+											<th>&nbsp;</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat="x in workList | filter:{status:'N'}">
+										<tr ng-repeat="x in noteClassList | filter:{status:'Y'}">
+											<td ng-bind="x.id"></td>
+											<td ng-bind="x.name"></td>
 											<td>
-												<input type="checkbox" ng-click="changeStatus(x)"/>&nbsp;&nbsp;&nbsp;&nbsp;
-												<span ng-bind="x.subject"></span>
+												<input class="btn btn-danger" type="button" ng-click="insert()" value="刪除"/>
 											</td>
-											<td ng-bind="x.content"></td>
-											<td ng-bind="x.cre_date | date:'yyyy/MM/dd HH:mm'"></td>
 										</tr>
 										<tr>
+											<td>&nbsp;</td>
 											<td>
-												<input class="form-control" ng-model="tmpData.subject"/>
-											</td>
-											<td>
-												<input class="form-control" ng-model="tmpData.content"/>
+												<input class="form-control" ng-model="tmpData.name"/>
 											</td>
 											<td>
 												<input class="btn btn-success" type="button" ng-click="insert()" value="送出"/>
 											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="form-group col-12">
-							<div class="col-md-8 col-sm-8 row">
-								<span>完工</span>
-							</div>
-						</div>
-						<div class="form-group col-12">
-							<div class="table-responsive">
-								<table class="table table-advance table-hover text-left">
-									<thead>
-										<tr>
-											<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;項目</th>
-											<th>內容概要</th>
-											<th>時間</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="x in workList | filter:{status:'Y'}">
-											<td ng-bind="x.subject"></td>
-											<td ng-bind="x.content"></td>
-											<td ng-bind="x.cre_date | date:'yyyy/MM/dd HH:mm'"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -104,5 +71,5 @@
 	<script type="text/javascript" src="../../plugins/waitingDialog.js"></script>
 	<!-- JS IMPORT -->
 	
-	<script>document.write('<script type="text/javascript"src="work.js?r=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>
+	<script>document.write('<script type="text/javascript"src="noteClass.js?r=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>
 </html>
