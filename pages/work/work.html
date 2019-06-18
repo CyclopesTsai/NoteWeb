@@ -37,14 +37,6 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat="x in workList | filter:{status:'N'}">
-											<td>
-												<input type="checkbox" ng-click="changeStatus(x)"/>&nbsp;&nbsp;&nbsp;&nbsp;
-												<span ng-bind="x.subject"></span>
-											</td>
-											<td ng-bind="x.content"></td>
-											<td ng-bind="x.cre_date | date:'yyyy-MM-dd'"></td>
-										</tr>
 										<tr>
 											<td>
 												<input class="form-control" ng-model="tmpData.subject"/>
@@ -53,8 +45,17 @@
 												<input class="form-control" ng-model="tmpData.content"/>
 											</td>
 											<td>
-												<input class="btn btn-success" type="button" ng-click="" value="送出"/>
+												<input class="btn btn-success" type="button" ng-click="insert()" value="送出"/>
 											</td>
+										</tr>
+										<tr ng-repeat="x in workList | filter:{status:'N'}">
+											<td>
+												<input type="checkbox" ng-click="changeStatus(x)"/>&nbsp;&nbsp;&nbsp;&nbsp;
+												<span class="glyphicon glyphicon-envelope"></span>
+												<span ng-bind="x.subject"></span>
+											</td>
+											<td ng-bind="x.content"></td>
+											<td ng-bind="x.cre_date | date:'yyyy-MM-dd'"></td>
 										</tr>
 									</tbody>
 								</table>

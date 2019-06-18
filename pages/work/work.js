@@ -27,7 +27,6 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 	
 	$scope.changeStatus = function(work) {
 		if(work) {
-			debugger;
 			var param = 'func=workUpd';
 			param += ('&data=' + encodeURIComponent(angular.toJson(work)));
 			
@@ -38,10 +37,9 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 				data : param,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).then(function (response){
-				
-				work.status = 'Y';
-				$scope.test = response.data;
-				
+				if( response.data == 'true' ){
+					work.status = 'Y';
+				}
 				waitingDialog.hide();
 			});
 		}
@@ -49,11 +47,11 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 	
 	$scope.insert = function() {
 		if($scope.tmpData) {
-			if(!$scope.tmpData.subejct || !$scope.tmpData.content){
+			if(!$scope.tmpData.subject || !$scope.tmpData.content){
 				return;
 			}
-				
 			
+			debugger;
 			var param = 'func=workAdd';
 			param += ('&data=' + encodeURIComponent(angular.toJson($scope.tmpData)));
 			
@@ -64,8 +62,20 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 				data : param,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).then(function (response){
+				if( response.data == 'true' ){
+					$scope.tmpData = {
+						subject: '',
+						content: ''
+					};
+				}
 				
-				work.status = 'Y';
+				param = 'func=workJson';
+				$http({
+					method: 'GET',
+					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
+				}).then(function (response){
+					$scope.workList = response.data;
+				});
 				
 				waitingDialog.hide();
 			});
