@@ -28,11 +28,11 @@
 						</div>
 						<div class="form-group col-md-10 col-sm-10">
 							<div class="table-responsive">
-								<table class="table table-advance table-hover text-left col-md-12 col-sm-12">
+								<table class="table table-advance table-hover text-left">
 									<thead>
 										<tr>
 											<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;項目</th>
-											<th>內容</th>
+											<th>內容概要</th>
 											<th>時間</th>
 										</tr>
 									</thead>
@@ -44,6 +44,17 @@
 											</td>
 											<td ng-bind="x.content"></td>
 											<td ng-bind="x.cre_date | date:'yyyy-MM-dd'"></td>
+										</tr>
+										<tr>
+											<td>
+												<input class="form-control" ng-model="tmpData.subject"/>
+											</td>
+											<td>
+												<input class="form-control" ng-model="tmpData.content"/>
+											</td>
+											<td>
+												<input class="btn btn-success" type="button" ng-click="" value="送出"/>
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -59,8 +70,8 @@
 								<table class="table table-advance table-hover text-left">
 									<thead>
 										<tr>
-											<th>項目</th>
-											<th>內容</th>
+											<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;項目</th>
+											<th>內容概要</th>
 											<th>時間</th>
 										</tr>
 									</thead>
