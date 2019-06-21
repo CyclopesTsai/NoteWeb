@@ -5123,11 +5123,10 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .alert-dismissible .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0.75rem 1.25rem;
-  color: inherit;
+	position: relative;
+	top: -2px;
+	right: -21px;
+	color: inherit
 }
 
 .alert-primary {
@@ -5638,18 +5637,22 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .close {
-  float: right;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
-  opacity: .5;
+	float: right;
+	font-size: 21px;
+	font-weight: bold;
+	line-height: 1;
+	color: #000;
+	text-shadow: 0 1px 0 #fff;
+	filter: alpha(opacity = 20);
+	opacity: .2;
 }
 
 .close:hover {
-  color: #000;
-  text-decoration: none;
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+	filter: alpha(opacity = 50);
+	opacity: .5;
 }
 
 .close:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
@@ -5866,8 +5869,8 @@ a.close.disabled {
 }
 
 .modal-title {
-  margin-bottom: 0;
-  line-height: 1.5;
+	margin: 0;
+	line-height: 1.42857143;
 }
 
 .modal-body {

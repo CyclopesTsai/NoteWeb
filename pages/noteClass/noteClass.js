@@ -5,6 +5,8 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 		name: ''
 	};
 
+	$scope.onUpd = false;
+
 	angular.element(document).ready(function () {
 		$scope.getNoteClassList();
 	});
@@ -24,7 +26,7 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 		});
 	}
 	
-	$scope.changeStatus = function(noteClass) {
+	$scope.upd = function(noteClass) {
 		if(noteClass) {
 			var param = 'func=noteClassUpd';
 			param += ('&data=' + encodeURIComponent(angular.toJson(noteClass)));
@@ -50,7 +52,7 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 		}
 	}
 	
-	$scope.insert = function() {
+	$scope.add = function() {
 		if($scope.tmpData) {
 			if(!$scope.tmpData.name){
 				return;
@@ -83,5 +85,50 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 				waitingDialog.hide();
 			});
 		}
+	}
+	
+	$scope.del = function(noteClass) {
+		if(noteClass) {
+			var dlg = dialogs.confirm();
+			dlg.result.then(function(btn) {
+				var param = 'func=noteClassDel';
+				param += ('&data=' + encodeURIComponent(angular.toJson(noteClass)));
+				
+				waitingDialog.show();
+				$http({
+					method: 'POST',
+					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec',
+					data : param,
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function (response){
+					
+					param = 'func=noteClassJson';
+					$http({
+						method: 'GET',
+						url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
+					}).then(function (response){
+						$scope.noteClassList = response.data;
+					});
+					
+					waitingDialog.hide();
+				});
+			});
+		}
+	}
+	
+	$scope.doUpd = function() {
+		//$scope.onUpd = true;
+		$('#upd').hide();
+		$('#del').hide();
+		$('#sbm').show();
+		$('#can').show();
+	}
+	
+	$scope.doCancel = function() {
+		//$scope.onUpd = false;
+		$('#upd').show();
+		$('#del').show();
+		$('#sbm').hide();
+		$('#can').hide();
 	}
 });

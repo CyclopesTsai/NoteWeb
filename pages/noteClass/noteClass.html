@@ -36,16 +36,19 @@
 											<td ng-bind="x.id"></td>
 											<td ng-bind="x.name"></td>
 											<td>
-												<input class="btn btn-danger" type="button" ng-click="insert()" value="刪除"/>
+												<input id="upd" type="button" ng-click="doUpd()" value="編輯" class="btn btn-info"/>
+												<input id="del" type="button" ng-click="del(x)" value="刪除" class="btn btn-danger"/>
+												<input id="sbm" type="button" ng-click="upd()" value="送出" class="btn btn-success" style="display:none;"/>
+												<input id="can" type="button" ng-click="doCancel()" value="取消" class="btn btn-danger" style="display:none;"/>
 											</td>
 										</tr>
 										<tr>
 											<td>&nbsp;</td>
 											<td>
-												<input class="form-control" ng-model="tmpData.name"/>
+												<input class="form-control" ng-model="tmpData.name" ng-disabled="onUpd"/>
 											</td>
 											<td>
-												<input class="btn btn-success" type="button" ng-click="insert()" value="送出"/>
+												<input class="btn btn-success" type="button" ng-click="add()" value="送出" ng-disabled="onUpd"/>
 											</td>
 										</tr>
 									</tbody>
