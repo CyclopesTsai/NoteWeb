@@ -80,9 +80,10 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
 				}).then(function (response){
 					$scope.noteClassList = response.data;
+					
+					$scope.onUpd = false;
+					waitingDialog.hide();
 				});
-				
-				waitingDialog.hide();
 			});
 		}
 	}

@@ -41,8 +41,8 @@
 												<span ng-bind="x.name" ng-hide="x.onUpd"></span>
 											</td>
 											<td>
-												<input type="button" ng-click="doUpd(x)" value="編輯" class="btn btn-info" ng-hide="x.onUpd"/>
-												<input type="button" ng-click="del(x)" value="刪除" class="btn btn-danger" ng-hide="x.onUpd"/>
+												<input type="button" ng-click="doUpd(x)" value="編輯" class="btn btn-info" ng-disabled="onUpd" ng-hide="x.onUpd"/>
+												<input type="button" ng-click="del(x)" value="刪除" class="btn btn-danger" ng-disabled="onUpd" ng-hide="x.onUpd"/>
 												<input type="button" ng-click="upd(x)" value="送出" class="btn btn-success" ng-show="x.onUpd"/>
 												<input type="button" ng-click="doCancel(x)" value="取消" class="btn btn-danger" ng-show="x.onUpd"/>
 											</td>
