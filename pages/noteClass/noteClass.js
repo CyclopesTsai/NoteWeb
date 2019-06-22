@@ -53,10 +53,10 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 					method: 'GET',
 					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
 				}).then(function (response){
-					$scope.noteClassList = response.data;
+					$scope.noteClassList = response.data
+					
+					waitingDialog.hide();
 				});
-				
-				waitingDialog.hide();
 			});
 		}
 	}
@@ -109,9 +109,9 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 						url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
 					}).then(function (response){
 						$scope.noteClassList = response.data;
+						
+						waitingDialog.hide();
 					});
-					
-					waitingDialog.hide();
 				});
 			});
 		}
