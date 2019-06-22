@@ -26,32 +26,6 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 		});
 	}
 	
-	$scope.upd = function(noteClass) {
-		if(noteClass) {
-			var param = 'func=noteClassUpd';
-			param += ('&data=' + encodeURIComponent(angular.toJson(noteClass)));
-			
-			waitingDialog.show();
-			$http({
-				method: 'POST',
-				url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec',
-				data : param,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			}).then(function (response){
-				
-				param = 'func=noteClassJson';
-				$http({
-					method: 'GET',
-					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
-				}).then(function (response){
-					$scope.noteClassList = response.data;
-				});
-				
-				waitingDialog.hide();
-			});
-		}
-	}
-	
 	$scope.add = function() {
 		if($scope.tmpData) {
 			if(!$scope.tmpData.name){
@@ -73,6 +47,32 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 						name: ''
 					};
 				}
+				
+				param = 'func=noteClassJson';
+				$http({
+					method: 'GET',
+					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
+				}).then(function (response){
+					$scope.noteClassList = response.data;
+				});
+				
+				waitingDialog.hide();
+			});
+		}
+	}
+	
+	$scope.upd = function(noteClass) {
+		if(noteClass) {
+			var param = 'func=noteClassUpd';
+			param += ('&data=' + encodeURIComponent(angular.toJson(noteClass)));
+			
+			waitingDialog.show();
+			$http({
+				method: 'POST',
+				url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec',
+				data : param,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).then(function (response){
 				
 				param = 'func=noteClassJson';
 				$http({
@@ -116,19 +116,13 @@ app.controller('noteClassCtrl',function($scope, $http, $cookies, $window, dialog
 		}
 	}
 	
-	$scope.doUpd = function() {
-		//$scope.onUpd = true;
-		$('#upd').hide();
-		$('#del').hide();
-		$('#sbm').show();
-		$('#can').show();
+	$scope.doUpd = function(noteClass) {
+		noteClass.onUpd = true;
+		$scope.onUpd = true;
 	}
 	
-	$scope.doCancel = function() {
-		//$scope.onUpd = false;
-		$('#upd').show();
-		$('#del').show();
-		$('#sbm').hide();
-		$('#can').hide();
+	$scope.doCancel = function(noteClass) {
+		noteClass.onUpd = false;
+		$scope.onUpd = false;
 	}
 });

@@ -26,23 +26,28 @@
 								<table class="table table-advance table-hover text-left">
 									<thead>
 										<tr>
-											<th>項目編號</th>
-											<th>項目名稱</th>
-											<th>&nbsp;</th>
+											<th class="col-md-2">項目編號</th>
+											<th class="col-md-2">項目名稱</th>
+											<th class="col-md-8">&nbsp;</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr ng-repeat="x in noteClassList | filter:{status:'Y'}">
-											<td ng-bind="x.id"></td>
-											<td ng-bind="x.name"></td>
 											<td>
-												<input id="upd" type="button" ng-click="doUpd()" value="編輯" class="btn btn-info"/>
-												<input id="del" type="button" ng-click="del(x)" value="刪除" class="btn btn-danger"/>
-												<input id="sbm" type="button" ng-click="upd()" value="送出" class="btn btn-success" style="display:none;"/>
-												<input id="can" type="button" ng-click="doCancel()" value="取消" class="btn btn-danger" style="display:none;"/>
+												<span ng-bind="x.id"></span>
+											</td>
+											<td>
+												<input class="form-control" ng-model="x.name" ng-show="x.onUpd"/>
+												<span ng-bind="x.name" ng-hide="x.onUpd"></span>
+											</td>
+											<td>
+												<input type="button" ng-click="doUpd(x)" value="編輯" class="btn btn-info" ng-hide="x.onUpd"/>
+												<input type="button" ng-click="del(x)" value="刪除" class="btn btn-danger" ng-hide="x.onUpd"/>
+												<input type="button" ng-click="upd(x)" value="送出" class="btn btn-success" ng-show="x.onUpd"/>
+												<input type="button" ng-click="doCancel(x)" value="取消" class="btn btn-danger" ng-show="x.onUpd"/>
 											</td>
 										</tr>
-										<tr>
+										<tr ng-hide="onUpd">
 											<td>&nbsp;</td>
 											<td>
 												<input class="form-control" ng-model="tmpData.name" ng-disabled="onUpd"/>
