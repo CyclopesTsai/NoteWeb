@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW" ng-app="workApp" ng-controller="workCtrl">
+<html lang="zh-Hant-TW" ng-app="noteApp" ng-controller="noteCtrl">
 	<title>Cyclopes's World</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,7 @@
 	
 	<body class="page-header-fixed">
 		<div class="navbar">
-			<h4 ng-bind-template="工作清單"></h4>
+			<h4 ng-bind-template="記事本分類"></h4>
 		</div>
 			
 		<div class="panel panel-warning">
@@ -22,65 +22,58 @@
 				<form name="form" class="form-horizontal" role="form">
 					<div class="form-body">
 						<div class="form-group col-12">
-							<div class="col-md-8 col-sm-8 row">
-								<span>待辦</span>
-							</div>
-						</div>
-						<div class="form-group col-12">
 							<div class="table-responsive">
 								<table class="table table-advance table-hover text-left">
 									<thead>
 										<tr>
-											<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;項目</th>
-											<th>內容概要</th>
-											<th>時間</th>
+											<th class="col-md-2">編號</th>
+											<th class="col-md-2">標題</th>
+											<th class="col-md-2">分類</th>
+											<th class="col-md-2">內容</th>
+											<th class="col-md-4">&nbsp;</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
+										<tr ng-repeat="x in noteList | filter:{status:'Y'}">
 											<td>
-												<input class="form-control" ng-model="tmpData.subject"/>
+												<span ng-bind="x.id"></span>
 											</td>
 											<td>
-												<input class="form-control" ng-model="tmpData.content"/>
+												<input class="form-control" ng-model="x.subject" ng-show="x.onUpd"/>
+												<span ng-bind="x.subject" ng-hide="x.onUpd"></span>
 											</td>
 											<td>
-												<input class="btn btn-success" type="button" ng-click="insert()" value="送出"/>
+												<input class="form-control" ng-model="x.class" ng-show="x.onUpd"/>
+												<span ng-bind="x.class" ng-hide="x.onUpd"></span>
+											</td>
+											<td>
+												<input class="form-control" ng-model="x.content" ng-show="x.onUpd"/>
+												<span ng-bind="x.content" ng-hide="x.onUpd"></span>
+											</td>
+											<td>
+												<input type="button" ng-click="doUpd(x)" value="編輯" class="btn btn-info" ng-disabled="onUpd" ng-hide="x.onUpd"/>
+												<input type="button" ng-click="del(x)" value="刪除" class="btn btn-danger" ng-disabled="onUpd" ng-hide="x.onUpd"/>
+												<input type="button" ng-click="upd(x)" value="送出" class="btn btn-success" ng-show="x.onUpd"/>
+												<input type="button" ng-click="doCancel(x)" value="取消" class="btn btn-danger" ng-show="x.onUpd"/>
 											</td>
 										</tr>
-										<tr ng-repeat="x in workList | filter:{status:'N'}">
+										<tr ng-hide="onUpd">
+											<td>&nbsp;</td>
 											<td>
-												<input type="checkbox" ng-click="changeStatus(x)"/>&nbsp;&nbsp;&nbsp;&nbsp;
-												<span class="glyphicon glyphicon-envelope"></span>
-												<span ng-bind="x.subject"></span>
+												<input class="form-control" ng-model="tmpData.subject" ng-disabled="onUpd"/>
 											</td>
-											<td ng-bind="x.content"></td>
-											<td ng-bind="x.cre_date | date:'yyyy-MM-dd'"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="form-group col-12">
-							<div class="col-md-8 col-sm-8 row">
-								<span>完成</span>
-							</div>
-						</div>
-						<div class="form-group col-12">
-							<div class="table-responsive">
-								<table class="table table-advance table-hover text-left">
-									<thead>
-										<tr>
-											<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;項目</th>
-											<th>內容概要</th>
-											<th>時間</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="x in workList | filter:{status:'Y'}">
-											<td ng-bind="x.subject"></td>
-											<td ng-bind="x.content"></td>
-											<td ng-bind="x.cre_date | date:'yyyy-MM-dd'"></td>
+											<td>
+												<select class="form-control" ng-model="tmpData.class" ng-disabled="onUpd">
+													<option value="">請選擇</option>
+													<option ng-repeat="x in classList | filter:{status:'Y'}" ng-bind="x.name" ng-value="x.id"/>
+												</select>
+											</td>
+											<td>
+												<input class="form-control" ng-model="tmpData.content" ng-disabled="onUpd"/>
+											</td>
+											<td>
+												<input class="btn btn-success" type="button" ng-click="add()" value="送出" ng-disabled="onUpd"/>
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -105,5 +98,5 @@
 	<script type="text/javascript" src="../../plugins/waitingDialog.js"></script>
 	<!-- JS IMPORT -->
 	
-	<script>document.write('<script type="text/javascript"src="work.js?r=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>
+	<script>document.write('<script type="text/javascript"src="note.js?r=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>
 </html>
