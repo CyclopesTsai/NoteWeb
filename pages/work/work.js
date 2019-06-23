@@ -74,9 +74,9 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
 				}).then(function (response){
 					$scope.workList = response.data;
+					
+					waitingDialog.hide();
 				});
-				
-				waitingDialog.hide();
 			});
 		}
 	}

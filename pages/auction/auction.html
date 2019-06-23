@@ -24,7 +24,7 @@
 						<div class="form-group col-12">
 							<div class="col-md-8 col-sm-8" style="display:flex;">
 								<span>物品名稱：</span>&nbsp;
-								<input class="form-control" id="itemName" name="itemName" ng-model="itemName" autofocus ng-required="true"/>&nbsp;
+								<input class="form-control" id="itemName" name="itemName" ng-model="itemName" ng-required="true"/>&nbsp;
 								<button class="btn btn-primary" ng-click="qryDataList();">搜尋</button>
 							</div>
 						</div>
@@ -45,7 +45,7 @@
 										<tr ng-repeat="x in auctionList">
 											<!--<td ng-bind="x.auc"></td>-->
 											<!--<td ng-bind="x.item"></td>-->
-											<td ng-bind="x.owner"></td>
+											<td ng-bind-template="{{x.owner}}-{{x.ownerRealm}}"></td>
 											<!--<td ng-bind="x.ownerRealm"></td>-->
 											<td ng-bind-template="{{x.bidG}}金{{x.bidS}}銀{{x.bidC}}銅"></td>
 											<td ng-bind-template="{{x.buyoutG}}金{{x.buyoutS}}銀{{x.buyoutC}}銅"></td>
