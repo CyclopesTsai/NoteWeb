@@ -167,6 +167,7 @@ section{
 
 .hello{
 	position:absolute;
-	top:30%;
+	top:50%;
 	left:30%;
+	font-size:3.0rem;
 }
