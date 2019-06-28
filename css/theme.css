@@ -25,6 +25,7 @@ input {
 
 span {
 	margin-top: 5px;
+	white-space: pre;
 }
 
 input[type="checkbox"]{

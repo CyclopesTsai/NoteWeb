@@ -123,12 +123,21 @@ app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 	}
 	
 	$scope.doUpd = function(note) {
+		$scope.tmpData = angular.copy(note);
+		
 		note.onUpd = true;
 		$scope.onUpd = true;
 	}
 	
 	$scope.doCancel = function(note) {
 		note.onUpd = false;
+		
+		$scope.tmpData = {
+			subject: '',
+			class: '',
+			content: ''
+		};
+		
 		$scope.onUpd = false;
 	}
 });

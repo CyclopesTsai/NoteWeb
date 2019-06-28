@@ -39,21 +39,21 @@
 												<span ng-bind="x.id"></span>
 											</td>
 											<td>
-												<input class="form-control" ng-model="x.subject" ng-show="x.onUpd"/>
+												<input class="form-control" ng-model="tmpData.subject" ng-show="x.onUpd"/>
 												<span ng-bind="x.subject" ng-hide="x.onUpd"></span>
 											</td>
 											<td>
-												<input class="form-control" ng-model="x.class" ng-show="x.onUpd"/>
+												<input class="form-control" ng-model="tmpData.class" ng-show="x.onUpd"/>
 												<span ng-bind="x.class" ng-hide="x.onUpd"></span>
 											</td>
 											<td>
-												<input class="form-control" ng-model="x.content" ng-show="x.onUpd"/>
-												<span ng-bind="x.content" ng-hide="x.onUpd"></span>
+												<textarea class="form-control" ng-model="tmpData.content" ng-show="x.onUpd"></textarea>
+												<span ng-bind-html="x.content" ng-hide="x.onUpd"></span>
 											</td>
 											<td>
 												<input type="button" ng-click="doUpd(x)" value="編輯" class="btn btn-info" ng-disabled="onUpd" ng-hide="x.onUpd"/>
 												<input type="button" ng-click="del(x)" value="刪除" class="btn btn-danger" ng-disabled="onUpd" ng-hide="x.onUpd"/>
-												<input type="button" ng-click="upd(x)" value="送出" class="btn btn-success" ng-show="x.onUpd"/>
+												<input type="button" ng-click="upd(tmpData)" value="送出" class="btn btn-success" ng-show="x.onUpd"/>
 												<input type="button" ng-click="doCancel(x)" value="取消" class="btn btn-danger" ng-show="x.onUpd"/>
 											</td>
 										</tr>
@@ -69,7 +69,7 @@
 												</select>
 											</td>
 											<td>
-												<input class="form-control" ng-model="tmpData.content" ng-disabled="onUpd"/>
+												<textarea class="form-control" ng-model="tmpData.content" ng-disabled="onUpd"></textarea>
 											</td>
 											<td>
 												<input class="btn btn-success" type="button" ng-click="add()" value="送出" ng-disabled="onUpd"/>
