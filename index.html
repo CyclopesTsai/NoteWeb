@@ -23,7 +23,7 @@
 				</div>
 				<div class="navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li ng-repeat="x in menuList">
+						<li ng-repeat="x in menuList" ng-show="x.status=='Y'">
 							<div class="navbar-header">
 								<a href="#" ng-click="changeRightFrame(x)" ng-attr-title="{{x.desc}}">
 									<span class="navbar-brand" ng-bind="x.name"></span>
@@ -39,6 +39,7 @@
 				<label class="hello">Hello World</label>
 			</div>
 			<div ng-show="frameUrl">
+				<input id="edit" name="edit" type="hidden" ng-value="edit"/>
 				<iframe id="rightFrame" src="{{frameUrl}}" frameBorder="0" width="100%" height="100%"></iframe>
 			</div>
 		</div>

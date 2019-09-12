@@ -20,7 +20,9 @@ app.controller('workCtrl',function($scope, $http, $cookies, $window, dialogs) {
 		}).then(function (response){
 			//debugger;
 			$scope.workList = response.data;
+			//$scope.edit = parent.document;
 			
+			//debugger;
 			waitingDialog.hide();
 		});
 	}

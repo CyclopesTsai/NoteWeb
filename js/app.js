@@ -2,6 +2,7 @@ var app = angular.module('noteApp', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ui
 app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 
 	$scope.frameUrl = "";
+	$scope.edit = "N";
 
 	angular.element(document).ready(function () {
 		$scope.getMenuList();
@@ -26,10 +27,12 @@ app.controller('noteCtrl',function($scope, $http, $cookies, $window, dialogs) {
 		if(menu) {
 			var url = ("pages/"+menu.url+"/"+menu.url+".html");
 			//$("#rightFrame").attr("src",url);
+			$scope.edit = menu.open;
 			$scope.frameUrl = url;
 		} else {
 			//$("#rightFrame").attr("src","");
 			$scope.frameUrl = "";
+			$scope.edit = "N";
 		}
 	}
 });
