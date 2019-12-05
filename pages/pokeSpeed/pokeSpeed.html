@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" ng-app="pokeSpeedApp" ng-controller="pokeSpeedCtrl">
+	<title>Cyclopes's World</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS IMPORT-->
+	<link rel="stylesheet" type="text/css" href="../../css/theme.css"/>
+	<link rel="stylesheet" type="text/css" href="../../plugins/dialog/dialogs.css"/>
+	<link rel="stylesheet" type="text/css" href="../../plugins/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../plugins/autoComplete/css/jquery.autocomplete.css"/>
+	<!-- CSS IMPORT-->
+	
+	<body class="page-header-fixed">
+		<div class="navbar">
+			<h4 ng-bind-template="工作清單"></h4>
+		</div>
+			
+		<div class="panel panel-warning">
+			<div class="panel-body">
+				<form name="form" class="form-horizontal" role="form">
+					<div class="form-body">
+						<div class="form-group col-12">
+							<div class="table-responsive">
+								<div class="col-md-12 col-sm-12">
+									<div class="col-md-12 col-sm-12">
+										<div class="col-md-12 col-sm-12">
+											<div class="col-md-4 col-sm-4">
+												<select class="form-control" ng-model="tmpData.pokemon" ng-options="(x.no + ' - ' + x.name) for x in pokemonList" ng-change="changePoke()"></select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 col-sm-12" style="padding-top:20px">
+									<div class="col-md-12 col-sm-12">
+										<div class="col-md-6 col-sm-6">
+											<div class="col-md-3 col-sm-3">
+												<label>ＨＰ</label>
+												<input class="form-control" ng-model="tmpData.H"/>
+											</div>
+											<div class="col-md-3 col-sm-3">
+												<label>攻擊</label>
+												<input class="form-control" ng-model="tmpData.A"/>
+											</div>
+											<div class="col-md-3 col-sm-3">
+												<label>防禦</label>
+												<input class="form-control" ng-model="tmpData.D"/>
+											</div>
+										</div>
+										<div class="col-md-6 col-sm-6">
+											<label>個性速度：&nbsp;</label>
+											<label>&nbsp;增&nbsp;&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="Y"/></label>
+											<label>&nbsp;無&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value=""/></label>
+											<label>&nbsp;減&nbsp;&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="N"/></label>
+										</div>
+									</div>
+									<div class="col-md-12 col-sm-12">
+										<div class="col-md-6 col-sm-6">
+											<div class="col-md-3 col-sm-3">
+												<label>特攻</label>
+												<input class="form-control" ng-model="tmpData.SA"/>
+											</div>
+											<div class="col-md-3 col-sm-3">
+												<label>特防</label>
+												<input class="form-control" ng-model="tmpData.SD"/>
+											</div>
+											<div class="col-md-3 col-sm-3">
+												<label>速度</label>
+												<input class="form-control" ng-model="tmpData.S"/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-12">
+							<div class="col-md-8 col-sm-8 row">
+								<span style="color:red;">列表</span>
+							</div>
+						</div>
+						<div class="form-group col-12">
+							<div class="table-responsive">
+								<table class="table table-advance table-hover text-left">
+									<thead>
+										<tr>
+											<th class="col-md-2">編號</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!--
+										<tr ng-repeat="x in pokemonList">
+											<td ng-bind="x.no"></td>
+										</tr>
+										-->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+	
+	<!-- JS IMPORT -->
+	<script type="text/javascript" src="../../plugins/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../plugins/angular/angular.js"></script>
+	<script type="text/javascript" src="../../plugins/angular/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="../../plugins/angular/angular-animate.min.js"></script>
+	<script type="text/javascript" src="../../plugins/angular/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="../../plugins/ui-bootstrap-tpls-2.5.0.min.js"></script>
+	<script type="text/javascript" src="../../plugins/autoComplete/js/jquery.autocomplete.js"></script>
+	<script type="text/javascript" src="../../plugins/dialog/dialogs-main.js"></script>
+	<script type="text/javascript" src="../../plugins/waitingDialog.js"></script>
+	<!-- JS IMPORT -->
+	
+	<script>document.write('<script type="text/javascript"src="pokeSpeed.js?r=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>
+</html>

@@ -20,7 +20,7 @@ ul {
 }
 
 input {
-	width: auto !important;
+	/*width: auto !important;*/
 }
 
 span {
@@ -28,9 +28,18 @@ span {
 	white-space: pre;
 }
 
+input[type="radio"]{
+	width: auto !important;
+	/*margin: 0px !important;*/
+	/*line-height: 0px !important;*/
+	display: initial !important;
+	box-shadow: none;
+	height: auto !important;
+}
+
 input[type="checkbox"]{
-  width: 20px !important; 
-  height: 20px !important;
+	width: 20px !important; 
+	height: 20px !important;
 }
 
 
