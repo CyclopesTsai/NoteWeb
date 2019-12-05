@@ -14,7 +14,7 @@
 	
 	<body class="page-header-fixed">
 		<div class="navbar">
-			<h4 ng-bind-template="工作清單"></h4>
+			<h4 ng-bind-template="速度線對照"></h4>
 		</div>
 			
 		<div class="panel panel-warning">
@@ -37,37 +37,71 @@
 										<div class="col-md-6 col-sm-6">
 											<div class="col-md-3 col-sm-3">
 												<label>ＨＰ</label>
-												<input class="form-control" ng-model="tmpData.H"/>
+												<input class="form-control" ng-model="tmpData.H" ng-change="textChange()" disabled/>
 											</div>
 											<div class="col-md-3 col-sm-3">
 												<label>攻擊</label>
-												<input class="form-control" ng-model="tmpData.A"/>
+												<input class="form-control" ng-model="tmpData.A" ng-change="textChange()" disabled/>
 											</div>
 											<div class="col-md-3 col-sm-3">
 												<label>防禦</label>
-												<input class="form-control" ng-model="tmpData.D"/>
+												<input class="form-control" ng-model="tmpData.D" ng-change="textChange()" disabled/>
 											</div>
 										</div>
 										<div class="col-md-6 col-sm-6">
 											<label>個性速度：&nbsp;</label>
-											<label>&nbsp;增&nbsp;&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="Y"/></label>
-											<label>&nbsp;無&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value=""/></label>
-											<label>&nbsp;減&nbsp;&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="N"/></label>
+											<label>&nbsp;增&nbsp;&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="Y" ng-change="textChange()"/></label>
+											<label>&nbsp;無&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="" ng-change="textChange()"/></label>
+											<label>&nbsp;減&nbsp;&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="N" ng-change="textChange()"/></label>
 										</div>
 									</div>
 									<div class="col-md-12 col-sm-12">
 										<div class="col-md-6 col-sm-6">
 											<div class="col-md-3 col-sm-3">
 												<label>特攻</label>
-												<input class="form-control" ng-model="tmpData.SA"/>
+												<input class="form-control" ng-model="tmpData.SA" ng-change="textChange()" disabled/>
 											</div>
 											<div class="col-md-3 col-sm-3">
 												<label>特防</label>
-												<input class="form-control" ng-model="tmpData.SD"/>
+												<input class="form-control" ng-model="tmpData.SD" ng-change="textChange()" disabled/>
 											</div>
 											<div class="col-md-3 col-sm-3">
 												<label>速度</label>
-												<input class="form-control" ng-model="tmpData.S"/>
+												<input class="form-control" ng-model="tmpData.S" ng-change="textChange()"/>
+											</div>
+										</div>
+										<div class="col-md-6 col-sm-6">
+											<div class="col-md-3 col-sm-3">
+												<label>努力</label>
+												<input class="form-control" ng-model="tmpData.baseStats" ng-change="textChange()"/>
+											</div>
+											<div class="col-md-3 col-sm-3">
+												<label>個體</label>
+												<input class="form-control" ng-model="tmpData.iv" ng-change="textChange()"/>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12 col-sm-12" style="padding-top:20px">
+										<div class="col-md-3 col-sm-3">
+											<div class="table-responsive">
+												<table class="table table-advance table-hover text-left">
+													<thead>
+														<tr>
+															<th class="col-md-2">等級</th>
+															<th class="col-md-2">速度</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>50</td>
+															<td ng-bind="tmpData.lv50Speed"></td>
+														</tr>
+														<tr>
+															<td>100</td>
+															<td ng-bind="tmpData.lv100Speed"></td>
+														</tr>
+													</tbody>
+												</table>
 											</div>
 										</div>
 									</div>
@@ -114,6 +148,7 @@
 	<script type="text/javascript" src="../../plugins/autoComplete/js/jquery.autocomplete.js"></script>
 	<script type="text/javascript" src="../../plugins/dialog/dialogs-main.js"></script>
 	<script type="text/javascript" src="../../plugins/waitingDialog.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
 	<!-- JS IMPORT -->
 	
 	<script>document.write('<script type="text/javascript"src="pokeSpeed.js?r=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>

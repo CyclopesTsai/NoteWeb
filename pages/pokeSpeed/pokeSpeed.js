@@ -9,7 +9,11 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 		SA:'',
 		SD:'',
 		S:'',
-		nature:''
+		nature:'',
+		baseStats:0,
+		iv:0,
+		lv50Speed:0,
+		lv100Speed:0
 	};
 
 	angular.element(document).ready(function () {
@@ -28,9 +32,10 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 			if($scope.pokemonList){
 				$scope.tmpData.pokemon = $scope.pokemonList[0];
 				$scope.changePoke();
+				$scope.textChange();
 			}
 			
-			debugger;
+			//debugger;
 			waitingDialog.hide();
 		});
 	}
@@ -44,6 +49,34 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 			$scope.tmpData.SD = $scope.tmpData.pokemon.SD;
 			$scope.tmpData.S = $scope.tmpData.pokemon.S;
 		}
+	}
+	
+	$scope.textChange = function() {
+		$scope.tmpData.H = getIntegerText($scope.tmpData.H);
+		$scope.tmpData.A = getIntegerText($scope.tmpData.A);
+		$scope.tmpData.D = getIntegerText($scope.tmpData.D);
+		$scope.tmpData.SA = getIntegerText($scope.tmpData.SA);
+		$scope.tmpData.SD = getIntegerText($scope.tmpData.SD);
+		$scope.tmpData.S = getIntegerText($scope.tmpData.S);
+		$scope.tmpData.baseStats = getIntegerText($scope.tmpData.baseStats);
+		if($scope.tmpData.baseStats > 252) {
+			$scope.tmpData.baseStats = 252;
+		}
+		$scope.tmpData.iv = getIntegerText($scope.tmpData.iv);
+		if($scope.tmpData.iv > 31) {
+			$scope.tmpData.iv = 31;
+		}
+		
+		if(!$scope.tmpData.nature) {
+			$scope.tmpData.natureVal = 1;
+		} else if($scope.tmpData.nature=='Y') {
+			$scope.tmpData.natureVal = 1.1;
+		} else if($scope.tmpData.nature=='N') {
+			$scope.tmpData.natureVal = 0.9;
+		}
+		
+		$scope.tmpData.lv50Speed = Math.floor((((($scope.tmpData.S*2) + ($scope.tmpData.iv*1) + ($scope.tmpData.baseStats/4)) * 50/100) + 5) * $scope.tmpData.natureVal);
+		$scope.tmpData.lv100Speed = Math.floor((((($scope.tmpData.S*2) + ($scope.tmpData.iv*1) + ($scope.tmpData.baseStats/4)) * 100/100) + 5) * $scope.tmpData.natureVal);
 	}
 	
 	$scope.insert = function() {
