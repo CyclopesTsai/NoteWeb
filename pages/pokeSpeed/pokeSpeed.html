@@ -50,9 +50,9 @@
 										</div>
 										<div class="col-md-6 col-sm-6">
 											<label>個性速度：&nbsp;</label>
-											<label>&nbsp;增&nbsp;&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="Y" ng-change="textChange()"/></label>
-											<label>&nbsp;無&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="" ng-change="textChange()"/></label>
-											<label>&nbsp;減&nbsp;&nbsp;<input class="form-control" type="radio" ng-model="tmpData.nature" value="N" ng-change="textChange()"/></label>
+											<label><input class="form-control" type="radio" ng-model="tmpData.nature" value="Y" ng-change="textChange()"/>&nbsp;增&nbsp;&nbsp;</label>
+											<label><input class="form-control" type="radio" ng-model="tmpData.nature" value="" ng-change="textChange()"/>&nbsp;無&nbsp;</label>
+											<label><input class="form-control" type="radio" ng-model="tmpData.nature" value="N" ng-change="textChange()"/>&nbsp;減&nbsp;&nbsp;</label>
 										</div>
 									</div>
 									<div class="col-md-12 col-sm-12">
@@ -105,6 +105,9 @@
 											</div>
 										</div>
 									</div>
+									<div class="col-md-12 col-sm-12 text-center" style="padding-top:20px">
+										<input type="button" ng-click="add(tmpData)" value="加入到下表" class="btn btn-success"/>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -119,6 +122,12 @@
 									<thead>
 										<tr>
 											<th class="col-md-2">編號</th>
+											<th class="col-md-2">名稱</th>
+											<th class="col-md-2">種族</th>
+											<th class="col-md-2">個體</th>
+											<th class="col-md-2">努力</th>
+											<th class="col-md-2">50等速度</th>
+											<th class="col-md-2">100等速度</th>
 										</tr>
 									</thead>
 									<tbody>

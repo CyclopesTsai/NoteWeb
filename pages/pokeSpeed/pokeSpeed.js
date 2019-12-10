@@ -79,15 +79,12 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 		$scope.tmpData.lv100Speed = Math.floor((((($scope.tmpData.S*2) + ($scope.tmpData.iv*1) + ($scope.tmpData.baseStats/4)) * 100/100) + 5) * $scope.tmpData.natureVal);
 	}
 	
-	$scope.insert = function() {
+	$scope.add = function() {
 		if($scope.tmpData) {
-			if(!$scope.tmpData.subject || !$scope.tmpData.content){
-				return;
-			}
-			
-			var param = 'func=workAdd';
+			var param = 'func=pokeSpeedAdd';
+			debugger;
 			param += ('&data=' + encodeURIComponent(angular.toJson($scope.tmpData)));
-			
+			/*
 			waitingDialog.show();
 			$http({
 				method: 'POST',
@@ -112,6 +109,7 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 					waitingDialog.hide();
 				});
 			});
+			*/
 		}
 	}
 });
