@@ -131,11 +131,15 @@
 										</tr>
 									</thead>
 									<tbody>
-										<!--
-										<tr ng-repeat="x in pokemonList">
+										<tr ng-repeat="x in pokeSpeedList">
 											<td ng-bind="x.no"></td>
+											<td style="{{x.nature=='Y'?'color:red':x.nature=='N'?'color:blue':''}}" ng-bind="x.name"></td>
+											<td ng-bind="x.S"></td>
+											<td ng-bind="x.iv"></td>
+											<td ng-bind="x.baseStats"></td>
+											<td ng-bind="x.lv50Speed"></td>
+											<td ng-bind="x.lv100Speed"></td>
 										</tr>
-										-->
 									</tbody>
 								</table>
 							</div>

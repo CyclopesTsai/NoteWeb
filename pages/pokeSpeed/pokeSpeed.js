@@ -34,9 +34,30 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 				$scope.changePoke();
 				$scope.textChange();
 			}
-			
+			$scope.getPokeSpeedList();
 			//debugger;
 			waitingDialog.hide();
+		});
+	}
+	
+	$scope.getPokeSpeedList = function() {
+		var param = 'func=pokeSpeedList';
+		$http({
+			method: 'GET',
+			url: 'https://script.google.com/macros/s/AKfycbxfRyruEEtLDd-oLNDxQeeUvJSJO9cG7jrzxY5UjVE2PkmP6mIi/exec?'+param
+		}).then(function (response){
+			$scope.pokeSpeedList = response.data;
+			for(var i in $scope.pokeSpeedList) {
+				if(!$scope.pokeSpeedList[i].nature) {
+					$scope.pokeSpeedList[i].natureVal = 1;
+				} else if($scope.pokeSpeedList[i].nature=='Y') {
+					$scope.pokeSpeedList[i].natureVal = 1.1;
+				} else if($scope.pokeSpeedList[i].nature=='N') {
+					$scope.pokeSpeedList[i].natureVal = 0.9;
+				}
+				$scope.pokeSpeedList[i].lv50Speed = Math.floor((((($scope.pokeSpeedList[i].S*2) + ($scope.pokeSpeedList[i].iv*1) + ($scope.pokeSpeedList[i].baseStats/4)) * 50/100) + 5) * $scope.pokeSpeedList[i].natureVal);
+				$scope.pokeSpeedList[i].lv100Speed = Math.floor((((($scope.pokeSpeedList[i].S*2) + ($scope.pokeSpeedList[i].iv*1) + ($scope.pokeSpeedList[i].baseStats/4)) * 100/100) + 5) * $scope.pokeSpeedList[i].natureVal);
+			}
 		});
 	}
 	
@@ -84,32 +105,17 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 			var param = 'func=pokeSpeedAdd';
 			debugger;
 			param += ('&data=' + encodeURIComponent(angular.toJson($scope.tmpData)));
-			/*
+			
 			waitingDialog.show();
 			$http({
 				method: 'POST',
-				url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec',
+				url: 'https://script.google.com/macros/s/AKfycbxfRyruEEtLDd-oLNDxQeeUvJSJO9cG7jrzxY5UjVE2PkmP6mIi/exec',
 				data : param,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).then(function (response){
-				if( response.data == 'true' ){
-					$scope.tmpData = {
-						subject: '',
-						content: ''
-					};
-				}
-				
-				param = 'func=workJson';
-				$http({
-					method: 'GET',
-					url: 'https://script.google.com/macros/s/AKfycbzUuJYOIQ9lwyhbTRtLky_rl0tg-AS0oJtz2YWSSbhwZGROXodQ/exec?'+param
-				}).then(function (response){
-					$scope.workList = response.data;
-					
-					waitingDialog.hide();
-				});
+				$scope.getPokeSpeedList();
+				waitingDialog.hide();
 			});
-			*/
 		}
 	}
 });
