@@ -131,7 +131,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat="x in pokeSpeedList">
+										<tr ng-repeat="x in pokeSpeedList | orderBy:'-lv50Speed'">
 											<td ng-bind="x.no"></td>
 											<td style="{{x.nature=='Y'?'color:red':x.nature=='N'?'color:blue':''}}" ng-bind="x.name"></td>
 											<td ng-bind="x.S"></td>
