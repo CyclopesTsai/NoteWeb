@@ -47,6 +47,7 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 			url: 'https://script.google.com/macros/s/AKfycbxfRyruEEtLDd-oLNDxQeeUvJSJO9cG7jrzxY5UjVE2PkmP6mIi/exec?'+param
 		}).then(function (response){
 			$scope.pokeSpeedList = response.data;
+			debugger;
 			for(var i in $scope.pokeSpeedList) {
 				if(!$scope.pokeSpeedList[i].nature) {
 					$scope.pokeSpeedList[i].natureVal = 1;
@@ -114,6 +115,28 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).then(function (response){
 				$scope.getPokeSpeedList();
+				waitingDialog.hide();
+			});
+		}
+	}
+	
+	$scope.del = function(x) {
+		if(x) {
+			var param = 'func=pokeSpeedDel';
+			debugger;
+			param += ('&data=' + encodeURIComponent(angular.toJson(x)));
+			
+			waitingDialog.show();
+			$http({
+				method: 'POST',
+				url: 'https://script.google.com/macros/s/AKfycbxfRyruEEtLDd-oLNDxQeeUvJSJO9cG7jrzxY5UjVE2PkmP6mIi/exec',
+				data : param,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).then(function (response){
+				debugger;
+				var row = response.data;
+				
+				//$scope.getPokeSpeedList();
 				waitingDialog.hide();
 			});
 		}
