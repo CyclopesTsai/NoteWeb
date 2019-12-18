@@ -104,7 +104,6 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 	$scope.add = function() {
 		if($scope.tmpData) {
 			var param = 'func=pokeSpeedAdd';
-			debugger;
 			param += ('&data=' + encodeURIComponent(angular.toJson($scope.tmpData)));
 			
 			waitingDialog.show();
@@ -123,7 +122,6 @@ app.controller('pokeSpeedCtrl',function($scope, $http, $cookies, $window, dialog
 	$scope.del = function(x) {
 		if(x) {
 			var param = 'func=pokeSpeedDel';
-			debugger;
 			param += ('&data=' + encodeURIComponent(angular.toJson(x)));
 			
 			waitingDialog.show();
